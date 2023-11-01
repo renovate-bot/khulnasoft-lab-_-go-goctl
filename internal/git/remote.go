@@ -125,7 +125,7 @@ func parseRemotes(gitRemotes []string) RemoteSet {
 }
 
 func setResolvedRemotes(remotes RemoteSet) {
-	stdOut, _, err := Exec("config", "--get-regexp", `^remote\..*\.gh-resolved$`)
+	stdOut, _, err := Exec("config", "--get-regexp", `^remote\..*\.goctl-resolved$`)
 	if err != nil {
 		return
 	}

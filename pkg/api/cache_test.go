@@ -29,7 +29,7 @@ func TestCacheResponse(t *testing.T) {
 		},
 	}
 
-	cacheDir := filepath.Join(t.TempDir(), "gh-cli-cache")
+	cacheDir := filepath.Join(t.TempDir(), "goctl-cli-cache")
 
 	httpClient, err := NewHTTPClient(
 		ClientOptions{
@@ -113,7 +113,7 @@ func TestCacheResponseRequestCacheOptions(t *testing.T) {
 		},
 	}
 
-	cacheDir := filepath.Join(t.TempDir(), "gh-cli-cache")
+	cacheDir := filepath.Join(t.TempDir(), "goctl-cli-cache")
 
 	httpClient, err := NewHTTPClient(
 		ClientOptions{

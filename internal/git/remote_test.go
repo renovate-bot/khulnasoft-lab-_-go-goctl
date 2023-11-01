@@ -22,10 +22,10 @@ func TestRemotes(t *testing.T) {
 	url = git@example.com:monalisa/origin.git
 [remote "test"]
 	url = git://github.com/hubot/test.git
-	gh-resolved = other
+	goctl-resolved = other
 [remote "upstream"]
 	url = https://github.com/monalisa/upstream.git
-	gh-resolved = base
+	goctl-resolved = base
 [remote "github"]
 	url = git@github.com:hubot/github.git
 `

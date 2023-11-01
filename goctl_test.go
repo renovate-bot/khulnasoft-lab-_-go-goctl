@@ -1,4 +1,4 @@
-package gh
+package goctl
 
 import (
 	"bytes"
@@ -43,7 +43,7 @@ func TestHelperProcessLongRunning(t *testing.T) {
 func TestRun(t *testing.T) {
 	var stdout, stderr bytes.Buffer
 	err := run(context.TODO(), os.Args[0], []string{"GOCTL_WANT_HELPER_PROCESS=1"}, nil, &stdout, &stderr,
-		[]string{"-test.run=TestHelperProcess", "--", "gh", "issue", "list"})
+		[]string{"-test.run=TestHelperProcess", "--", "goctl", "issue", "list"})
 	assert.NoError(t, err)
 	assert.Equal(t, "[goctl issue list]", stdout.String())
 	assert.Equal(t, "", stderr.String())
@@ -52,7 +52,7 @@ func TestRun(t *testing.T) {
 func TestRunError(t *testing.T) {
 	var stdout, stderr bytes.Buffer
 	err := run(context.TODO(), os.Args[0], []string{"GOCTL_WANT_HELPER_PROCESS=1"}, nil, &stdout, &stderr,
-		[]string{"-test.run=TestHelperProcess", "--", "gh", "error"})
+		[]string{"-test.run=TestHelperProcess", "--", "goctl", "error"})
 	assert.EqualError(t, err, "goctl execution failed: exit status 1")
 	assert.Equal(t, "", stdout.String())
 	assert.Equal(t, "process exited with error", stderr.String())
@@ -63,6 +63,6 @@ func TestRunInteractiveContextCanceled(t *testing.T) {
 	ctx, cancel := context.WithDeadline(context.Background(), time.Now())
 	cancel()
 	err := run(ctx, os.Args[0], []string{"GOCTL_WANT_HELPER_PROCESS=1"}, nil, nil, nil,
-		[]string{"-test.run=TestHelperProcessLongRunning", "--", "gh", "issue", "list"})
+		[]string{"-test.run=TestHelperProcessLongRunning", "--", "goctl", "issue", "list"})
 	assert.EqualError(t, err, "goctl execution failed: context deadline exceeded")
 }

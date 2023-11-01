@@ -16,9 +16,9 @@ import (
 const (
 	codespaces            = "CODESPACES"
 	defaultSource         = "default"
-	ghEnterpriseToken     = "GOCTL_ENTERPRISE_TOKEN"
-	ghHost                = "GOCTL_HOST"
-	ghToken               = "GOCTL_TOKEN"
+	goctlEnterpriseToken     = "GOCTL_ENTERPRISE_TOKEN"
+	goctlHost                = "GOCTL_HOST"
+	goctlToken               = "GOCTL_TOKEN"
 	github                = "github.com"
 	githubEnterpriseToken = "GITHUB_ENTERPRISE_TOKEN"
 	githubToken           = "GITHUB_TOKEN"
@@ -37,13 +37,13 @@ func TokenForHost(host string) (string, string) {
 		return token, source
 	}
 
-	ghExe := os.Getenv("GOCTL_PATH")
-	if ghExe == "" {
-		ghExe, _ = safeexec.LookPath("gh")
+	goctlExe := os.Getenv("GOCTL_PATH")
+	if goctlExe == "" {
+		goctlExe, _ = safeexec.LookPath("goctl")
 	}
 
-	if ghExe != "" {
-		if token, source := tokenFromGh(ghExe, host); token != "" {
+	if goctlExe != "" {
+		if token, source := tokenFromGh(goctlExe, host); token != "" {
 			return token, source
 		}
 	}
@@ -62,8 +62,8 @@ func TokenFromEnvOrConfig(host string) (string, string) {
 func tokenForHost(cfg *config.Config, host string) (string, string) {
 	host = normalizeHostname(host)
 	if isEnterprise(host) {
-		if token := os.Getenv(ghEnterpriseToken); token != "" {
-			return token, ghEnterpriseToken
+		if token := os.Getenv(goctlEnterpriseToken); token != "" {
+			return token, goctlEnterpriseToken
 		}
 		if token := os.Getenv(githubEnterpriseToken); token != "" {
 			return token, githubEnterpriseToken
@@ -78,8 +78,8 @@ func tokenForHost(cfg *config.Config, host string) (string, string) {
 			return token, oauthToken
 		}
 	}
-	if token := os.Getenv(ghToken); token != "" {
-		return token, ghToken
+	if token := os.Getenv(goctlToken); token != "" {
+		return token, goctlToken
 	}
 	if token := os.Getenv(githubToken); token != "" {
 		return token, githubToken
@@ -95,9 +95,9 @@ func tokenFromGh(path string, host string) (string, string) {
 	cmd := exec.Command(path, "auth", "token", "--secure-storage", "--hostname", host)
 	result, err := cmd.Output()
 	if err != nil {
-		return "", "gh"
+		return "", "goctl"
 	}
-	return strings.TrimSpace(string(result)), "gh"
+	return strings.TrimSpace(string(result)), "goctl"
 }
 
 // KnownHosts retrieves a list of hosts that have corresponding
@@ -111,7 +111,7 @@ func KnownHosts() []string {
 
 func knownHosts(cfg *config.Config) []string {
 	hosts := set.NewStringSet()
-	if host := os.Getenv(ghHost); host != "" {
+	if host := os.Getenv(goctlHost); host != "" {
 		hosts.Add(host)
 	}
 	if token, _ := tokenForHost(cfg, github); token != "" {
@@ -136,8 +136,8 @@ func DefaultHost() (string, string) {
 }
 
 func defaultHost(cfg *config.Config) (string, string) {
-	if host := os.Getenv(ghHost); host != "" {
-		return host, ghHost
+	if host := os.Getenv(goctlHost); host != "" {
+		return host, goctlHost
 	}
 	if cfg != nil {
 		keys, err := cfg.Keys([]string{hostsKey})

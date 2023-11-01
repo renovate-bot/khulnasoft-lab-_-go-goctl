@@ -77,14 +77,14 @@ func NewHTTPClient(opts ClientOptions) (*http.Client, error) {
 	transport = c.RoundTripper(transport)
 
 	if opts.Log == nil && !opts.LogIgnoreEnv {
-		ghDebug := os.Getenv("GOCTL_DEBUG")
-		switch ghDebug {
+		goctlDebug := os.Getenv("GOCTL_DEBUG")
+		switch goctlDebug {
 		case "", "0", "false", "no":
 			// no logging
 		default:
 			opts.Log = os.Stderr
 			opts.LogColorize = !term.IsColorDisabled() && term.IsTerminal(os.Stderr)
-			opts.LogVerboseHTTP = strings.Contains(ghDebug, "api")
+			opts.LogVerboseHTTP = strings.Contains(goctlDebug, "api")
 		}
 	}
 

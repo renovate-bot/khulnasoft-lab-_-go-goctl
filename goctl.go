@@ -3,7 +3,7 @@
 //
 // Note that the examples in this package assume goctl and git are installed. They do not run in
 // the Go Playground used by pkg.go.dev.
-package gh
+package goctl
 
 import (
 	"bytes"
@@ -18,45 +18,45 @@ import (
 
 // Exec invokes a goctl command in a subprocess and captures the output and error streams.
 func Exec(args ...string) (stdout, stderr bytes.Buffer, err error) {
-	ghExe, err := Path()
+	goctlExe, err := Path()
 	if err != nil {
 		return
 	}
-	err = run(context.Background(), ghExe, nil, nil, &stdout, &stderr, args)
+	err = run(context.Background(), goctlExe, nil, nil, &stdout, &stderr, args)
 	return
 }
 
 // ExecContext invokes a goctl command in a subprocess and captures the output and error streams.
 func ExecContext(ctx context.Context, args ...string) (stdout, stderr bytes.Buffer, err error) {
-	ghExe, err := Path()
+	goctlExe, err := Path()
 	if err != nil {
 		return
 	}
-	err = run(ctx, ghExe, nil, nil, &stdout, &stderr, args)
+	err = run(ctx, goctlExe, nil, nil, &stdout, &stderr, args)
 	return
 }
 
 // Exec invokes a goctl command in a subprocess with its stdin, stdout, and stderr streams connected to
 // those of the parent process. This is suitable for running goctl commands with interactive prompts.
 func ExecInteractive(ctx context.Context, args ...string) error {
-	ghExe, err := Path()
+	goctlExe, err := Path()
 	if err != nil {
 		return err
 	}
-	return run(ctx, ghExe, nil, os.Stdin, os.Stdout, os.Stderr, args)
+	return run(ctx, goctlExe, nil, os.Stdin, os.Stdout, os.Stderr, args)
 }
 
-// Path searches for an executable named "gh" in the directories named by the PATH environment variable.
+// Path searches for an executable named "goctl" in the directories named by the PATH environment variable.
 // If the executable is found the result is an absolute path.
 func Path() (string, error) {
-	if ghExe := os.Getenv("GOCTL_PATH"); ghExe != "" {
-		return ghExe, nil
+	if goctlExe := os.Getenv("GOCTL_PATH"); goctlExe != "" {
+		return goctlExe, nil
 	}
-	return safeexec.LookPath("gh")
+	return safeexec.LookPath("goctl")
 }
 
-func run(ctx context.Context, ghExe string, env []string, stdin io.Reader, stdout, stderr io.Writer, args []string) error {
-	cmd := exec.CommandContext(ctx, ghExe, args...)
+func run(ctx context.Context, goctlExe string, env []string, stdin io.Reader, stdout, stderr io.Writer, args []string) error {
+	cmd := exec.CommandContext(ctx, goctlExe, args...)
 	cmd.Stdin = stdin
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr

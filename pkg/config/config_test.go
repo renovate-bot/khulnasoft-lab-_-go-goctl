@@ -28,7 +28,7 @@ func TestConfigDir(t *testing.T) {
 				"USERPROFILE":     tempDir,
 				"HOME":            tempDir,
 			},
-			output: filepath.Join(tempDir, ".config", "gh"),
+			output: filepath.Join(tempDir, ".config", "goctl"),
 		},
 		{
 			name: "GOCTL_CONFIG_DIR specified",
@@ -42,7 +42,7 @@ func TestConfigDir(t *testing.T) {
 			env: map[string]string{
 				"XDG_CONFIG_HOME": tempDir,
 			},
-			output: filepath.Join(tempDir, "gh"),
+			output: filepath.Join(tempDir, "goctl"),
 		},
 		{
 			name: "GOCTL_CONFIG_DIR and XDG_CONFIG_HOME specified",
@@ -76,7 +76,7 @@ func TestConfigDir(t *testing.T) {
 				"XDG_CONFIG_HOME": tempDir,
 				"AppData":         tempDir,
 			},
-			output: filepath.Join(tempDir, "gh"),
+			output: filepath.Join(tempDir, "goctl"),
 		},
 	}
 
@@ -114,14 +114,14 @@ func TestStateDir(t *testing.T) {
 				"USERPROFILE":     tempDir,
 				"HOME":            tempDir,
 			},
-			output: filepath.Join(tempDir, ".local", "state", "gh"),
+			output: filepath.Join(tempDir, ".local", "state", "goctl"),
 		},
 		{
 			name: "XDG_STATE_HOME specified",
 			env: map[string]string{
 				"XDG_STATE_HOME": tempDir,
 			},
-			output: filepath.Join(tempDir, "gh"),
+			output: filepath.Join(tempDir, "goctl"),
 		},
 		{
 			name:        "LocalAppData specified",
@@ -138,7 +138,7 @@ func TestStateDir(t *testing.T) {
 				"XDG_STATE_HOME": tempDir,
 				"LocalAppData":   tempDir,
 			},
-			output: filepath.Join(tempDir, "gh"),
+			output: filepath.Join(tempDir, "goctl"),
 		},
 	}
 
@@ -176,14 +176,14 @@ func TestDataDir(t *testing.T) {
 				"USERPROFILE":     tempDir,
 				"HOME":            tempDir,
 			},
-			output: filepath.Join(tempDir, ".local", "share", "gh"),
+			output: filepath.Join(tempDir, ".local", "share", "goctl"),
 		},
 		{
 			name: "XDG_DATA_HOME specified",
 			env: map[string]string{
 				"XDG_DATA_HOME": tempDir,
 			},
-			output: filepath.Join(tempDir, "gh"),
+			output: filepath.Join(tempDir, "goctl"),
 		},
 		{
 			name:        "LocalAppData specified",
@@ -200,7 +200,7 @@ func TestDataDir(t *testing.T) {
 				"XDG_DATA_HOME": tempDir,
 				"LocalAppData":  tempDir,
 			},
-			output: filepath.Join(tempDir, "gh"),
+			output: filepath.Join(tempDir, "goctl"),
 		},
 	}
 
@@ -220,7 +220,7 @@ func TestDataDir(t *testing.T) {
 }
 
 func TestCacheDir(t *testing.T) {
-	expected := filepath.Join(os.TempDir(), "gh-cli-cache")
+	expected := filepath.Join(os.TempDir(), "goctl-cli-cache")
 	actual := CacheDir()
 	assert.Equal(t, expected, actual)
 }

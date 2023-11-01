@@ -1,5 +1,5 @@
 // Package config is a set of types for interacting with the goctl configuration files.
-// Note: This package is intended for use only in gh, any other use cases are subject
+// Note: This package is intended for use only in goctl, any other use cases are subject
 // to breakage and non-backwards compatible updates.
 package config
 
@@ -16,7 +16,7 @@ import (
 
 const (
 	appData       = "AppData"
-	ghConfigDir   = "GOCTL_CONFIG_DIR"
+	goctlConfigDir   = "GOCTL_CONFIG_DIR"
 	localAppData  = "LocalAppData"
 	xdgConfigHome = "XDG_CONFIG_HOME"
 	xdgDataHome   = "XDG_DATA_HOME"
@@ -245,15 +245,15 @@ func mapFromString(str string) (*yamlmap.Map, error) {
 // Config path precedence: GOCTL_CONFIG_DIR, XDG_CONFIG_HOME, AppData (windows only), HOME.
 func ConfigDir() string {
 	var path string
-	if a := os.Getenv(ghConfigDir); a != "" {
+	if a := os.Getenv(goctlConfigDir); a != "" {
 		path = a
 	} else if b := os.Getenv(xdgConfigHome); b != "" {
-		path = filepath.Join(b, "gh")
+		path = filepath.Join(b, "goctl")
 	} else if c := os.Getenv(appData); runtime.GOOS == "windows" && c != "" {
 		path = filepath.Join(c, "GitHub CLI")
 	} else {
 		d, _ := os.UserHomeDir()
-		path = filepath.Join(d, ".config", "gh")
+		path = filepath.Join(d, ".config", "goctl")
 	}
 	return path
 }
@@ -262,12 +262,12 @@ func ConfigDir() string {
 func StateDir() string {
 	var path string
 	if a := os.Getenv(xdgStateHome); a != "" {
-		path = filepath.Join(a, "gh")
+		path = filepath.Join(a, "goctl")
 	} else if b := os.Getenv(localAppData); runtime.GOOS == "windows" && b != "" {
 		path = filepath.Join(b, "GitHub CLI")
 	} else {
 		c, _ := os.UserHomeDir()
-		path = filepath.Join(c, ".local", "state", "gh")
+		path = filepath.Join(c, ".local", "state", "goctl")
 	}
 	return path
 }
@@ -276,19 +276,19 @@ func StateDir() string {
 func DataDir() string {
 	var path string
 	if a := os.Getenv(xdgDataHome); a != "" {
-		path = filepath.Join(a, "gh")
+		path = filepath.Join(a, "goctl")
 	} else if b := os.Getenv(localAppData); runtime.GOOS == "windows" && b != "" {
 		path = filepath.Join(b, "GitHub CLI")
 	} else {
 		c, _ := os.UserHomeDir()
-		path = filepath.Join(c, ".local", "share", "gh")
+		path = filepath.Join(c, ".local", "share", "goctl")
 	}
 	return path
 }
 
 // CacheDir returns the default path for goctl cli cache.
 func CacheDir() string {
-	return filepath.Join(os.TempDir(), "gh-cli-cache")
+	return filepath.Join(os.TempDir(), "goctl-cli-cache")
 }
 
 func readFile(filename string) ([]byte, error) {

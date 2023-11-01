@@ -21,7 +21,7 @@ import (
 // Execute 'goctl issue list -R khulnasoft-lab/goctl', and print the output.
 func ExampleExec() {
 	args := []string{"issue", "list", "-R", "khulnasoft-lab/goctl"}
-	stdOut, stdErr, err := gh.Exec(args...)
+	stdOut, stdErr, err := goctl.Exec(args...)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -6,11 +6,11 @@ Modules from this library will obeyGoCtl CLI conventions by default:
 
 - [`repository.Current()`](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/repository#current) respects the value of the `GOCTL_REPO` environment variable and reads from git remote configuration as fallback.
 
-- GitHub API requests will be authenticated using the same mechanism as `gh`, i.e. using the values of `GOCTL_TOKEN` and `GOCTL_HOST` environment variables and falling back to the user's stored OAuth token.
+- GitHub API requests will be authenticated using the same mechanism as `goctl`, i.e. using the values of `GOCTL_TOKEN` and `GOCTL_HOST` environment variables and falling back to the user's stored OAuth token.
 
 - [Terminal capabilities](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/term) are determined by taking environment variables `GOCTL_FORCE_TTY`, `NO_COLOR`, `CLICOLOR`, etc. into account.
 
-- Generating [table](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/tableprinter) or [Go template](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/pkg/template) output uses the same engine as gh.
+- Generating [table](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/tableprinter) or [Go template](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/pkg/template) output uses the same engine as goctl.
 
 - The [`browser`](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/browser) module activates the user's preferred web browser.
 
@@ -29,10 +29,10 @@ import (
 )
 
 func main() {
-	// These examples assume `gh` is installed and has been authenticated.
+	// These examples assume `goctl` is installed and has been authenticated.
 
 	// Shell out to a goctl command and read its output.
-	issueList, _, err := gh.Exec("issue", "list", "--repo", "khulnasoft-lab/goctl", "--limit", "5")
+	issueList, _, err := goctl.Exec("issue", "list", "--repo", "khulnasoft-lab/goctl", "--limit", "5")
 	if err != nil {
 		log.Fatal(err)
 	}

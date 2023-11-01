@@ -67,8 +67,8 @@ func (b *Browser) browse(url string, env []string) error {
 }
 
 func resolveLauncher() string {
-	if ghBrowser := os.Getenv("GOCTL_BROWSER"); ghBrowser != "" {
-		return ghBrowser
+	if goctlBrowser := os.Getenv("GOCTL_BROWSER"); goctlBrowser != "" {
+		return goctlBrowser
 	}
 	cfg, err := config.Read(nil)
 	if err == nil {
