@@ -1,7 +1,7 @@
-// Package gh is a library for CLI Go applications to help interface with the gh CLI tool,
+// Package goctl is a library for CLI Go applications to help interface with the goctl CLI tool,
 // and the GitHub API.
 //
-// Note that the examples in this package assume gh and git are installed. They do not run in
+// Note that the examples in this package assume goctl and git are installed. They do not run in
 // the Go Playground used by pkg.go.dev.
 package gh
 
@@ -16,7 +16,7 @@ import (
 	"github.com/khulnasoft-lab/execsafer"
 )
 
-// Exec invokes a gh command in a subprocess and captures the output and error streams.
+// Exec invokes a goctl command in a subprocess and captures the output and error streams.
 func Exec(args ...string) (stdout, stderr bytes.Buffer, err error) {
 	ghExe, err := Path()
 	if err != nil {
@@ -26,7 +26,7 @@ func Exec(args ...string) (stdout, stderr bytes.Buffer, err error) {
 	return
 }
 
-// ExecContext invokes a gh command in a subprocess and captures the output and error streams.
+// ExecContext invokes a goctl command in a subprocess and captures the output and error streams.
 func ExecContext(ctx context.Context, args ...string) (stdout, stderr bytes.Buffer, err error) {
 	ghExe, err := Path()
 	if err != nil {
@@ -36,8 +36,8 @@ func ExecContext(ctx context.Context, args ...string) (stdout, stderr bytes.Buff
 	return
 }
 
-// Exec invokes a gh command in a subprocess with its stdin, stdout, and stderr streams connected to
-// those of the parent process. This is suitable for running gh commands with interactive prompts.
+// Exec invokes a goctl command in a subprocess with its stdin, stdout, and stderr streams connected to
+// those of the parent process. This is suitable for running goctl commands with interactive prompts.
 func ExecInteractive(ctx context.Context, args ...string) error {
 	ghExe, err := Path()
 	if err != nil {
@@ -64,7 +64,7 @@ func run(ctx context.Context, ghExe string, env []string, stdin io.Reader, stdou
 		cmd.Env = env
 	}
 	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("gh execution failed: %w", err)
+		return fmt.Errorf("goctl execution failed: %w", err)
 	}
 	return nil
 }

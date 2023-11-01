@@ -1,4 +1,4 @@
-// Package config is a set of types for interacting with the gh configuration files.
+// Package config is a set of types for interacting with the goctl configuration files.
 // Note: This package is intended for use only in gh, any other use cases are subject
 // to breakage and non-backwards compatible updates.
 package config
@@ -29,7 +29,7 @@ var (
 	loadErr error
 )
 
-// Config is a in memory representation of the gh configuration files.
+// Config is a in memory representation of the goctl configuration files.
 // It can be thought of as map where entries consist of a key that
 // correspond to either a string value or a map value, allowing for
 // multi-level maps.
@@ -132,7 +132,7 @@ func (c *Config) deepCopy() *Config {
 	return ReadFromString(c.entries.String())
 }
 
-// Read gh configuration files from the local file system and
+// Read goctl configuration files from the local file system and
 // returns a Config. A copy of the fallback configuration will
 // be returned when there are no configuration files to load.
 // If there are no configuration files and no fallback configuration
@@ -153,8 +153,8 @@ func ReadFromString(str string) *Config {
 	return &Config{entries: m}
 }
 
-// Write gh configuration files to the local file system.
-// It will only write gh configuration files that have been modified
+// Write goctl configuration files to the local file system.
+// It will only write goctl configuration files that have been modified
 // since last being read.
 func Write(c *Config) error {
 	c.mu.Lock()
@@ -286,7 +286,7 @@ func DataDir() string {
 	return path
 }
 
-// CacheDir returns the default path for gh cli cache.
+// CacheDir returns the default path for goctl cli cache.
 func CacheDir() string {
 	return filepath.Join(os.TempDir(), "gh-cli-cache")
 }

@@ -27,7 +27,7 @@ func DefaultGraphQLClient() (*GraphQLClient, error) {
 
 // GraphQLClient builds a client to send requests to GitHub GraphQL API endpoints.
 // As part of the configuration a hostname, auth token, default set of headers,
-// and unix domain socket are resolved from the gh environment configuration.
+// and unix domain socket are resolved from the goctl environment configuration.
 // These behaviors can be overridden using the opts argument.
 func NewGraphQLClient(opts ClientOptions) (*GraphQLClient, error) {
 	if optionsNeedResolution(opts) {

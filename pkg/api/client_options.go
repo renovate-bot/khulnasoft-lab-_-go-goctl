@@ -18,7 +18,7 @@ type ClientOptions struct {
 	AuthToken string
 
 	// CacheDir is the directory to use for cached API requests.
-	// Default is the same directory that gh uses for caching.
+	// Default is the same directory that goctl uses for caching.
 	CacheDir string
 
 	// CacheTTL is the time that cached API requests are valid for.

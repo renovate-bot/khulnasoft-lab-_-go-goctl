@@ -22,7 +22,7 @@ func DefaultRESTClient() (*RESTClient, error) {
 
 // RESTClient builds a client to send requests to GitHub REST API endpoints.
 // As part of the configuration a hostname, auth token, default set of headers,
-// and unix domain socket are resolved from the gh environment configuration.
+// and unix domain socket are resolved from the goctl environment configuration.
 // These behaviors can be overridden using the opts argument.
 func NewRESTClient(opts ClientOptions) (*RESTClient, error) {
 	if optionsNeedResolution(opts) {

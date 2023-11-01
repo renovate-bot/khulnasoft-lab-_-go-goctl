@@ -23,7 +23,7 @@ Please avoid:
 
 1. Create a new branch: `git checkout -b my-branch-name`
 1. Make your change, add tests, and ensure tests pass
-1. Submit a pull request: `gh pr create --web`
+1. Submit a pull request: `goctl pr create --web`
 
 Contributions to this project are [released][legal] to the public under the [project's open source license][license].
 

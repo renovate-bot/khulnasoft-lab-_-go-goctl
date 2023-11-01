@@ -237,7 +237,7 @@ func defaultHeaders() http.Header {
 	a := "application/vnd.github.merge-info-preview+json"
 	a += ", application/vnd.github.nebula-preview"
 	h.Set(contentType, jsonContentType)
-	h.Set(userAgent, "go-gh")
+	h.Set(userAgent, "go-goctl")
 	h.Set(authorization, fmt.Sprintf("token %s", "oauth_token"))
 	h.Set(timeZone, currentTimeZone())
 	h.Set(accept, a)

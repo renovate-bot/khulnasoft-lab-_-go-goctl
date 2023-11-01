@@ -29,7 +29,7 @@ const (
 
 // TokenForHost retrieves an authentication token and the source of that token for the specified
 // host. The source can be either an environment variable, configuration file, or the system
-// keyring. In the latter case, this shells out to "gh auth token" to obtain the token.
+// keyring. In the latter case, this shells out to "goctl auth token" to obtain the token.
 //
 // Returns "", "default" if no applicable token is found.
 func TokenForHost(host string) (string, string) {

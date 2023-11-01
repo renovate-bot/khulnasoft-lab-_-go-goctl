@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"time"
 
-	gh "github.com/khulnasoft-lab/go-goctl/v2"
+	goctl "github.com/khulnasoft-lab/go-goctl/v2"
 	"github.com/khulnasoft-lab/go-goctl/v2/pkg/api"
 	"github.com/khulnasoft-lab/go-goctl/v2/pkg/repository"
 	"github.com/khulnasoft-lab/go-goctl/v2/pkg/tableprinter"
@@ -18,9 +18,9 @@ import (
 	graphql "github.com/cli/shurcooL-graphql"
 )
 
-// Execute 'gh issue list -R cli/cli', and print the output.
+// Execute 'goctl issue list -R khulnasoft-lab/goctl', and print the output.
 func ExampleExec() {
-	args := []string{"issue", "list", "-R", "cli/cli"}
+	args := []string{"issue", "list", "-R", "khulnasoft-lab/goctl"}
 	stdOut, stdErr, err := gh.Exec(args...)
 	if err != nil {
 		log.Fatal(err)
@@ -29,21 +29,21 @@ func ExampleExec() {
 	fmt.Println(stdErr.String())
 }
 
-// Get tags from cli/cli repository using REST API.
+// Get tags from khulnasoft-lab/goctl repository using REST API.
 func ExampleDefaultRESTClient() {
 	client, err := api.DefaultRESTClient()
 	if err != nil {
 		log.Fatal(err)
 	}
 	response := []struct{ Name string }{}
-	err = client.Get("repos/cli/cli/tags", &response)
+	err = client.Get("repos/khulnasoft-lab/goctl/tags", &response)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(response)
 }
 
-// Get tags from cli/cli repository using REST API.
+// Get tags from khulnasoft-lab/goctl repository using REST API.
 // Specifying host, auth token, headers and logging to stdout.
 func ExampleRESTClient() {
 	opts := api.ClientOptions{
@@ -57,14 +57,14 @@ func ExampleRESTClient() {
 		log.Fatal(err)
 	}
 	response := []struct{ Name string }{}
-	err = client.Get("repos/cli/cli/tags", &response)
+	err = client.Get("repos/khulnasoft-lab/goctl/tags", &response)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(response)
 }
 
-// Get release asset from cli/cli repository using REST API.
+// Get release asset from khulnasoft-lab/goctl repository using REST API.
 func ExampleRESTClient_request() {
 	opts := api.ClientOptions{
 		Headers: map[string]string{"Accept": "application/octet-stream"},
@@ -73,8 +73,8 @@ func ExampleRESTClient_request() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// URL to cli/cli release v2.14.2 checksums.txt
-	assetURL := "repos/cli/cli/releases/assets/71589494"
+	// URL to khulnasoft-lab/goctl release v2.14.2 checksums.txt
+	assetURL := "repos/khulnasoft-lab/goctl/releases/assets/71589494"
 	response, err := client.Request(http.MethodGet, assetURL, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -92,7 +92,7 @@ func ExampleRESTClient_request() {
 	fmt.Printf("Asset downloaded to %s\n", f.Name())
 }
 
-// Get releases from cli/cli repository using REST API with paginated results.
+// Get releases from khulnasoft-lab/goctl repository using REST API with paginated results.
 func ExampleRESTClient_pagination() {
 	var linkRE = regexp.MustCompile(`<([^>]+)>;\s*rel="([^"]+)"`)
 	findNextPage := func(response *http.Response) (string, bool) {
@@ -107,7 +107,7 @@ func ExampleRESTClient_pagination() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	requestPath := "repos/cli/cli/releases"
+	requestPath := "repos/khulnasoft-lab/goctl/releases"
 	page := 1
 	for {
 		response, err := client.Request(http.MethodGet, requestPath, nil)
@@ -133,7 +133,7 @@ func ExampleRESTClient_pagination() {
 	}
 }
 
-// Query tags from cli/cli repository using GraphQL API.
+// Query tags from khulnasoft-lab/goctl repository using GraphQL API.
 func ExampleDefaultGraphQLClient() {
 	client, err := api.DefaultGraphQLClient()
 	if err != nil {
@@ -161,7 +161,7 @@ func ExampleDefaultGraphQLClient() {
 	fmt.Println(query)
 }
 
-// Query tags from cli/cli repository using GraphQL API.
+// Query tags from khulnasoft-lab/goctl repository using GraphQL API.
 // Enable caching and request timeout.
 func ExampleGraphQLClient() {
 	opts := api.ClientOptions{
@@ -229,7 +229,7 @@ func ExampleGraphQLClient_mutate() {
 	fmt.Println(mutation.AddStar.Starrable.Repository.StargazerCount)
 }
 
-// Query releases from cli/cli repository using GraphQL API with paginated results.
+// Query releases from khulnasoft-lab/goctl repository using GraphQL API with paginated results.
 func ExampleGraphQLClient_pagination() {
 	client, err := api.DefaultGraphQLClient()
 	if err != nil {

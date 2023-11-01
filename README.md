@@ -1,6 +1,6 @@
 # Go library for the GitHub CLI
 
-`go-gh` is a collection of Go modules to make authoring [GitHub CLI extensions][extensions] easier.
+`go-goctl` is a collection of Go modules to make authoring [GitHub CLI extensions][extensions] easier.
 
 Modules from this library will obey GitHub CLI conventions by default:
 
@@ -16,7 +16,7 @@ Modules from this library will obey GitHub CLI conventions by default:
 
 ## Usage
 
-See the full `go-gh`  [reference documentation](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2) for more information
+See the full `go-goctl`  [reference documentation](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2) for more information
 
 ```golang
 package main
@@ -31,8 +31,8 @@ import (
 func main() {
 	// These examples assume `gh` is installed and has been authenticated.
 
-	// Shell out to a gh command and read its output.
-	issueList, _, err := gh.Exec("issue", "list", "--repo", "cli/cli", "--limit", "5")
+	// Shell out to a goctl command and read its output.
+	issueList, _, err := gh.Exec("issue", "list", "--repo", "khulnasoft-lab/goctl", "--limit", "5")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,7 +46,7 @@ func main() {
 	response := []struct{
 		Name string
 	}{}
-	err = client.Get("repos/cli/cli/tags", &response)
+	err = client.Get("repos/khulnasoft-lab/goctl/tags", &response)
 	if err != nil {
 		log.Fatal(err)
 	}

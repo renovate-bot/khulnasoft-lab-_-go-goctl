@@ -39,7 +39,7 @@ func DefaultHTTPClient() (*http.Client, error) {
 
 // HTTPClient builds a client that can be passed to another library.
 // As part of the configuration a hostname, auth token, default set of headers,
-// and unix domain socket are resolved from the gh environment configuration.
+// and unix domain socket are resolved from the goctl environment configuration.
 // These behaviors can be overridden using the opts argument. In this instance
 // providing opts.Host will not change the destination of your request as it is
 // the responsibility of the consumer to configure this. However, if opts.Host
@@ -160,7 +160,7 @@ func resolveHeaders(headers map[string]string) {
 		headers[contentType] = jsonContentType
 	}
 	if _, ok := headers[userAgent]; !ok {
-		headers[userAgent] = "go-gh"
+		headers[userAgent] = "go-goctl"
 		info, ok := debug.ReadBuildInfo()
 		if ok {
 			for _, dep := range info.Deps {
