@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/text"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/text"
 )
 
 // Prompter provides methods for prompting the user.

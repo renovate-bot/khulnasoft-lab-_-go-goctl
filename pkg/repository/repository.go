@@ -8,9 +8,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/khulnasoft-lab/goctl/v2/internal/git"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/auth"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/ssh"
+	"github.com/khulnasoft-lab/go-goctl/v2/internal/git"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/auth"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/ssh"
 )
 
 // Repository holds information representing a GitHub repository.
@@ -119,7 +119,7 @@ func ParseWithHost(s, host string) (Repository, error) {
 func Current() (Repository, error) {
 	var r Repository
 
-	override := os.Getenv("GH_REPO")
+	override := os.Getenv("GOCTL_REPO")
 	if override != "" {
 		return Parse(override)
 	}

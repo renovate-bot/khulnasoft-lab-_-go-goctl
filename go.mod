@@ -1,4 +1,4 @@
-module github.com/khulnasoft-lab/goctl/v2
+module github.com/khulnasoft-lab/go-goctl/v2
 
 go 1.21
 
@@ -6,12 +6,12 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/charmbracelet/glamour v0.6.0
-	github.com/cli/browser v1.3.0
-	github.com/cli/safeexec v1.0.0
 	github.com/cli/shurcooL-graphql v0.0.4
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/henvic/httpretty v0.0.6
 	github.com/itchyny/gojq v0.12.13
+	github.com/khulnasoft-lab/browser v0.0.0-20231101161915-41930d3886ab
+	github.com/khulnasoft-lab/execsafer v1.0.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.13.0

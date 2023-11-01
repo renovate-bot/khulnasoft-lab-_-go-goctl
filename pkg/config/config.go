@@ -11,12 +11,12 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/khulnasoft-lab/goctl/v2/internal/yamlmap"
+	"github.com/khulnasoft-lab/go-goctl/v2/internal/yamlmap"
 )
 
 const (
 	appData       = "AppData"
-	ghConfigDir   = "GH_CONFIG_DIR"
+	ghConfigDir   = "GOCTL_CONFIG_DIR"
 	localAppData  = "LocalAppData"
 	xdgConfigHome = "XDG_CONFIG_HOME"
 	xdgDataHome   = "XDG_DATA_HOME"
@@ -242,7 +242,7 @@ func mapFromString(str string) (*yamlmap.Map, error) {
 	return yamlmap.Unmarshal([]byte(str))
 }
 
-// Config path precedence: GH_CONFIG_DIR, XDG_CONFIG_HOME, AppData (windows only), HOME.
+// Config path precedence: GOCTL_CONFIG_DIR, XDG_CONFIG_HOME, AppData (windows only), HOME.
 func ConfigDir() string {
 	var path string
 	if a := os.Getenv(ghConfigDir); a != "" {

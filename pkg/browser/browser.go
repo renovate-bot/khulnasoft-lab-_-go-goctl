@@ -6,9 +6,9 @@ import (
 	"os"
 	"os/exec"
 
-	cliBrowser "github.com/cli/browser"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
-	"github.com/cli/safeexec"
+	cliBrowser "github.com/khulnasoft-lab/browser"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/execsafer"
 	"github.com/google/shlex"
 )
 
@@ -24,7 +24,7 @@ type Browser struct {
 // configuration file.
 // The order of precedence for determining a launcher is:
 // - Specified launcher;
-// - GH_BROWSER environment variable;
+// - GOCTL_BROWSER environment variable;
 // - browser option from configuration file;
 // - BROWSER environment variable.
 func New(launcher string, stdout, stderr io.Writer) *Browser {
@@ -67,7 +67,7 @@ func (b *Browser) browse(url string, env []string) error {
 }
 
 func resolveLauncher() string {
-	if ghBrowser := os.Getenv("GH_BROWSER"); ghBrowser != "" {
+	if ghBrowser := os.Getenv("GOCTL_BROWSER"); ghBrowser != "" {
 		return ghBrowser
 	}
 	cfg, err := config.Read(nil)

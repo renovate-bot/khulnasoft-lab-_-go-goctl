@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/asciisanitizer"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/term"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/asciisanitizer"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/term"
 	"github.com/henvic/httpretty"
 	"github.com/thlib/go-timezone-local/tzlocal"
 	"golang.org/x/text/transform"
@@ -26,7 +26,7 @@ const (
 	github          = "github.com"
 	jsonContentType = "application/json; charset=utf-8"
 	localhost       = "github.localhost"
-	modulePath      = "github.com/khulnasoft-lab/goctl"
+	modulePath      = "github.com/khulnasoft-lab/go-goctl"
 	timeZone        = "Time-Zone"
 	userAgent       = "User-Agent"
 )
@@ -77,7 +77,7 @@ func NewHTTPClient(opts ClientOptions) (*http.Client, error) {
 	transport = c.RoundTripper(transport)
 
 	if opts.Log == nil && !opts.LogIgnoreEnv {
-		ghDebug := os.Getenv("GH_DEBUG")
+		ghDebug := os.Getenv("GOCTL_DEBUG")
 		switch ghDebug {
 		case "", "0", "false", "no":
 			// no logging

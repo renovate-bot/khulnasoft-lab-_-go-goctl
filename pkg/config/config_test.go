@@ -22,7 +22,7 @@ func TestConfigDir(t *testing.T) {
 		{
 			name: "HOME/USERPROFILE specified",
 			env: map[string]string{
-				"GH_CONFIG_DIR":   "",
+				"GOCTL_CONFIG_DIR":   "",
 				"XDG_CONFIG_HOME": "",
 				"AppData":         "",
 				"USERPROFILE":     tempDir,
@@ -31,11 +31,11 @@ func TestConfigDir(t *testing.T) {
 			output: filepath.Join(tempDir, ".config", "gh"),
 		},
 		{
-			name: "GH_CONFIG_DIR specified",
+			name: "GOCTL_CONFIG_DIR specified",
 			env: map[string]string{
-				"GH_CONFIG_DIR": filepath.Join(tempDir, "gh_config_dir"),
+				"GOCTL_CONFIG_DIR": filepath.Join(tempDir, "goctl_config_dir"),
 			},
-			output: filepath.Join(tempDir, "gh_config_dir"),
+			output: filepath.Join(tempDir, "goctl_config_dir"),
 		},
 		{
 			name: "XDG_CONFIG_HOME specified",
@@ -45,12 +45,12 @@ func TestConfigDir(t *testing.T) {
 			output: filepath.Join(tempDir, "gh"),
 		},
 		{
-			name: "GH_CONFIG_DIR and XDG_CONFIG_HOME specified",
+			name: "GOCTL_CONFIG_DIR and XDG_CONFIG_HOME specified",
 			env: map[string]string{
-				"GH_CONFIG_DIR":   filepath.Join(tempDir, "gh_config_dir"),
+				"GOCTL_CONFIG_DIR":   filepath.Join(tempDir, "goctl_config_dir"),
 				"XDG_CONFIG_HOME": tempDir,
 			},
-			output: filepath.Join(tempDir, "gh_config_dir"),
+			output: filepath.Join(tempDir, "goctl_config_dir"),
 		},
 		{
 			name:        "AppData specified",
@@ -61,13 +61,13 @@ func TestConfigDir(t *testing.T) {
 			output: filepath.Join(tempDir, "GitHub CLI"),
 		},
 		{
-			name:        "GH_CONFIG_DIR and AppData specified",
+			name:        "GOCTL_CONFIG_DIR and AppData specified",
 			onlyWindows: true,
 			env: map[string]string{
-				"GH_CONFIG_DIR": filepath.Join(tempDir, "gh_config_dir"),
+				"GOCTL_CONFIG_DIR": filepath.Join(tempDir, "goctl_config_dir"),
 				"AppData":       tempDir,
 			},
-			output: filepath.Join(tempDir, "gh_config_dir"),
+			output: filepath.Join(tempDir, "goctl_config_dir"),
 		},
 		{
 			name:        "XDG_CONFIG_HOME and AppData specified",
@@ -108,7 +108,7 @@ func TestStateDir(t *testing.T) {
 			name: "HOME/USERPROFILE specified",
 			env: map[string]string{
 				"XDG_STATE_HOME":  "",
-				"GH_CONFIG_DIR":   "",
+				"GOCTL_CONFIG_DIR":   "",
 				"XDG_CONFIG_HOME": "",
 				"LocalAppData":    "",
 				"USERPROFILE":     tempDir,
@@ -170,7 +170,7 @@ func TestDataDir(t *testing.T) {
 			name: "HOME/USERPROFILE specified",
 			env: map[string]string{
 				"XDG_DATA_HOME":   "",
-				"GH_CONFIG_DIR":   "",
+				"GOCTL_CONFIG_DIR":   "",
 				"XDG_CONFIG_HOME": "",
 				"LocalAppData":    "",
 				"USERPROFILE":     tempDir,
@@ -394,7 +394,7 @@ func TestWrite(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tempDir := t.TempDir()
-			t.Setenv("GH_CONFIG_DIR", tempDir)
+			t.Setenv("GOCTL_CONFIG_DIR", tempDir)
 			cfg := tt.createConfig()
 			err := Write(cfg)
 			assert.NoError(t, err)
@@ -408,7 +408,7 @@ func TestWrite(t *testing.T) {
 
 func TestWriteEmptyValues(t *testing.T) {
 	tempDir := t.TempDir()
-	t.Setenv("GH_CONFIG_DIR", tempDir)
+	t.Setenv("GOCTL_CONFIG_DIR", tempDir)
 	cfg := ReadFromString(testFullConfig())
 	cfg.Set([]string{"editor"}, "")
 	err := Write(cfg)

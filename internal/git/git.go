@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	"github.com/cli/safeexec"
+	"github.com/khulnasoft-lab/execsafer"
 )
 
 func Exec(args ...string) (stdOut, stdErr bytes.Buffer, err error) {

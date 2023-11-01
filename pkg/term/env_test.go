@@ -18,7 +18,7 @@ func TestFromEnv(t *testing.T) {
 		{
 			name: "default",
 			env: map[string]string{
-				"GH_FORCE_TTY":   "",
+				"GOCTL_FORCE_TTY":   "",
 				"CLICOLOR":       "",
 				"CLICOLOR_FORCE": "",
 				"NO_COLOR":       "",
@@ -33,7 +33,7 @@ func TestFromEnv(t *testing.T) {
 		{
 			name: "force color",
 			env: map[string]string{
-				"GH_FORCE_TTY":   "",
+				"GOCTL_FORCE_TTY":   "",
 				"CLICOLOR":       "",
 				"CLICOLOR_FORCE": "1",
 				"NO_COLOR":       "",
@@ -48,7 +48,7 @@ func TestFromEnv(t *testing.T) {
 		{
 			name: "force tty",
 			env: map[string]string{
-				"GH_FORCE_TTY":   "true",
+				"GOCTL_FORCE_TTY":   "true",
 				"CLICOLOR":       "",
 				"CLICOLOR_FORCE": "",
 				"NO_COLOR":       "",
@@ -63,7 +63,7 @@ func TestFromEnv(t *testing.T) {
 		{
 			name: "has 256-color support",
 			env: map[string]string{
-				"GH_FORCE_TTY":   "true",
+				"GOCTL_FORCE_TTY":   "true",
 				"CLICOLOR":       "",
 				"CLICOLOR_FORCE": "",
 				"NO_COLOR":       "",
@@ -78,7 +78,7 @@ func TestFromEnv(t *testing.T) {
 		{
 			name: "has truecolor support",
 			env: map[string]string{
-				"GH_FORCE_TTY":   "true",
+				"GOCTL_FORCE_TTY":   "true",
 				"CLICOLOR":       "",
 				"CLICOLOR_FORCE": "",
 				"NO_COLOR":       "",

@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/term"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/term"
 	"github.com/stretchr/testify/assert"
 )
 

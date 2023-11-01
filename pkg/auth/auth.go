@@ -8,17 +8,17 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/khulnasoft-lab/goctl/v2/internal/set"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
-	"github.com/cli/safeexec"
+	"github.com/khulnasoft-lab/go-goctl/v2/internal/set"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/execsafer"
 )
 
 const (
 	codespaces            = "CODESPACES"
 	defaultSource         = "default"
-	ghEnterpriseToken     = "GH_ENTERPRISE_TOKEN"
-	ghHost                = "GH_HOST"
-	ghToken               = "GH_TOKEN"
+	ghEnterpriseToken     = "GOCTL_ENTERPRISE_TOKEN"
+	ghHost                = "GOCTL_HOST"
+	ghToken               = "GOCTL_TOKEN"
 	github                = "github.com"
 	githubEnterpriseToken = "GITHUB_ENTERPRISE_TOKEN"
 	githubToken           = "GITHUB_TOKEN"
@@ -37,7 +37,7 @@ func TokenForHost(host string) (string, string) {
 		return token, source
 	}
 
-	ghExe := os.Getenv("GH_PATH")
+	ghExe := os.Getenv("GOCTL_PATH")
 	if ghExe == "" {
 		ghExe, _ = safeexec.LookPath("gh")
 	}

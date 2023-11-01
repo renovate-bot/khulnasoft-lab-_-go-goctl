@@ -3,7 +3,7 @@ package repository
 import (
 	"testing"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -81,9 +81,9 @@ func TestParse(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			t.Setenv("GH_CONFIG_DIR", "nonexistant")
+			t.Setenv("GOCTL_CONFIG_DIR", "nonexistant")
 			if tt.hostOverride != "" {
-				t.Setenv("GH_HOST", tt.hostOverride)
+				t.Setenv("GOCTL_HOST", tt.hostOverride)
 			}
 			r, err := Parse(tt.input)
 			if tt.wantErr != "" {

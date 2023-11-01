@@ -3,7 +3,7 @@ package auth
 import (
 	"testing"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -37,13 +37,13 @@ func TestTokenForHost(t *testing.T) {
 			wantNotFound: true,
 		},
 		{
-			name:        "token for github.com with GH_TOKEN, GITHUB_TOKEN, and config token",
+			name:        "token for github.com with GOCTL_TOKEN, GITHUB_TOKEN, and config token",
 			host:        "github.com",
-			ghToken:     "GH_TOKEN",
+			ghToken:     "GOCTL_TOKEN",
 			githubToken: "GITHUB_TOKEN",
 			config:      testHostsConfig(),
-			wantToken:   "GH_TOKEN",
-			wantSource:  "GH_TOKEN",
+			wantToken:   "GOCTL_TOKEN",
+			wantSource:  "GOCTL_TOKEN",
 		},
 		{
 			name:        "token for github.com with GITHUB_TOKEN, and config token",
@@ -61,13 +61,13 @@ func TestTokenForHost(t *testing.T) {
 			wantSource: "oauth_token",
 		},
 		{
-			name:                  "token for enterprise.com with GH_ENTERPRISE_TOKEN, GITHUB_ENTERPRISE_TOKEN, and config token",
+			name:                  "token for enterprise.com with GOCTL_ENTERPRISE_TOKEN, GITHUB_ENTERPRISE_TOKEN, and config token",
 			host:                  "enterprise.com",
-			ghEnterpriseToken:     "GH_ENTERPRISE_TOKEN",
+			ghEnterpriseToken:     "GOCTL_ENTERPRISE_TOKEN",
 			githubEnterpriseToken: "GITHUB_ENTERPRISE_TOKEN",
 			config:                testHostsConfig(),
-			wantToken:             "GH_ENTERPRISE_TOKEN",
-			wantSource:            "GH_ENTERPRISE_TOKEN",
+			wantToken:             "GOCTL_ENTERPRISE_TOKEN",
+			wantSource:            "GOCTL_ENTERPRISE_TOKEN",
 		},
 		{
 			name:                  "token for enterprise.com with GITHUB_ENTERPRISE_TOKEN, and config token",
@@ -90,8 +90,8 @@ func TestTokenForHost(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Setenv("GITHUB_TOKEN", tt.githubToken)
 			t.Setenv("GITHUB_ENTERPRISE_TOKEN", tt.githubEnterpriseToken)
-			t.Setenv("GH_TOKEN", tt.ghToken)
-			t.Setenv("GH_ENTERPRISE_TOKEN", tt.ghEnterpriseToken)
+			t.Setenv("GOCTL_TOKEN", tt.ghToken)
+			t.Setenv("GOCTL_ENTERPRISE_TOKEN", tt.ghEnterpriseToken)
 			token, source := tokenForHost(tt.config, tt.host)
 			assert.Equal(t, tt.wantToken, token)
 			assert.Equal(t, tt.wantSource, source)
@@ -109,11 +109,11 @@ func TestDefaultHost(t *testing.T) {
 		wantNotFound bool
 	}{
 		{
-			name:       "GH_HOST if set",
+			name:       "GOCTL_HOST if set",
 			config:     testHostsConfig(),
 			ghHost:     "test.com",
 			wantHost:   "test.com",
-			wantSource: "GH_HOST",
+			wantSource: "GOCTL_HOST",
 		},
 		{
 			name:       "authenticated host if only one",
@@ -140,7 +140,7 @@ func TestDefaultHost(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if tt.ghHost != "" {
-				t.Setenv("GH_HOST", tt.ghHost)
+				t.Setenv("GOCTL_HOST", tt.ghHost)
 			}
 			host, source := defaultHost(tt.config)
 			assert.Equal(t, tt.wantHost, host)
@@ -163,7 +163,7 @@ func TestKnownHosts(t *testing.T) {
 			wantHosts: []string{},
 		},
 		{
-			name:      "includes GH_HOST",
+			name:      "includes GOCTL_HOST",
 			config:    testNoHostsConfig(),
 			ghHost:    "test.com",
 			wantHosts: []string{"test.com"},
@@ -191,10 +191,10 @@ func TestKnownHosts(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if tt.ghHost != "" {
-				t.Setenv("GH_HOST", tt.ghHost)
+				t.Setenv("GOCTL_HOST", tt.ghHost)
 			}
 			if tt.ghToken != "" {
-				t.Setenv("GH_TOKEN", tt.ghToken)
+				t.Setenv("GOCTL_TOKEN", tt.ghToken)
 			}
 			hosts := knownHosts(tt.config)
 			assert.Equal(t, tt.wantHosts, hosts)

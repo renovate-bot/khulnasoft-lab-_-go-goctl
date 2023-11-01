@@ -13,7 +13,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/cli/safeexec"
+	"github.com/khulnasoft-lab/execsafer"
 )
 
 // Exec invokes a gh command in a subprocess and captures the output and error streams.
@@ -49,7 +49,7 @@ func ExecInteractive(ctx context.Context, args ...string) error {
 // Path searches for an executable named "gh" in the directories named by the PATH environment variable.
 // If the executable is found the result is an absolute path.
 func Path() (string, error) {
-	if ghExe := os.Getenv("GH_PATH"); ghExe != "" {
+	if ghExe := os.Getenv("GOCTL_PATH"); ghExe != "" {
 		return ghExe, nil
 	}
 	return safeexec.LookPath("gh")

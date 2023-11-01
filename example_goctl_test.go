@@ -1,4 +1,4 @@
-package gh_test
+package goctl_test
 
 import (
 	"encoding/json"
@@ -10,11 +10,11 @@ import (
 	"regexp"
 	"time"
 
-	gh "github.com/khulnasoft-lab/goctl/v2"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/api"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/repository"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/tableprinter"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/term"
+	gh "github.com/khulnasoft-lab/go-goctl/v2"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/api"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/repository"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/tableprinter"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/term"
 	graphql "github.com/cli/shurcooL-graphql"
 )
 
@@ -194,7 +194,7 @@ func ExampleGraphQLClient() {
 	fmt.Println(query)
 }
 
-// Add a star to the khulnasoft-lab/goctl repository using the GraphQL API.
+// Add a star to the khulnasoft-lab/go-goctl repository using the GraphQL API.
 func ExampleGraphQLClient_mutate() {
 	client, err := api.DefaultGraphQLClient()
 	if err != nil {

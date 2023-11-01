@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/MakeNowJust/heredoc"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/text"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/text"
 	"github.com/stretchr/testify/assert"
 )
 

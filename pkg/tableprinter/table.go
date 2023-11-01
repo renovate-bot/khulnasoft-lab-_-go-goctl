@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/text"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/text"
 )
 
 type fieldOption func(*tableField)

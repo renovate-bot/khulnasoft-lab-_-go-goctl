@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/MakeNowJust/heredoc"
-	"github.com/cli/safeexec"
+	"github.com/khulnasoft-lab/execsafer"
 )
 
 func TestTranslator(t *testing.T) {
@@ -82,7 +82,7 @@ func TestTranslator(t *testing.T) {
 }
 
 func TestHelperProcess(t *testing.T) {
-	if os.Getenv("GH_WANT_HELPER_PROCESS") != "1" {
+	if os.Getenv("GOCTL_WANT_HELPER_PROCESS") != "1" {
 		return
 	}
 	if err := func(args []string) error {
@@ -112,7 +112,7 @@ func TestTranslator_caching(t *testing.T) {
 		newCommand: func(exe string, args ...string) *exec.Cmd {
 			args = append([]string{"-test.run=TestHelperProcess", "--", exe}, args...)
 			c := exec.Command(os.Args[0], args...)
-			c.Env = []string{"GH_WANT_HELPER_PROCESS=1"}
+			c.Env = []string{"GOCTL_WANT_HELPER_PROCESS=1"}
 			countNewCommand++
 			return c
 		},

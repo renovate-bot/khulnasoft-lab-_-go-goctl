@@ -6,12 +6,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestHelperProcess(t *testing.T) {
-	if os.Getenv("GH_WANT_HELPER_PROCESS") != "1" {
+	if os.Getenv("GOCTL_WANT_HELPER_PROCESS") != "1" {
 		return
 	}
 	fmt.Fprintf(os.Stdout, "%v", os.Args[3:])
@@ -23,7 +23,7 @@ func TestBrowse(t *testing.T) {
 	stdout := &bytes.Buffer{}
 	stderr := &bytes.Buffer{}
 	b := Browser{launcher: launcher, stdout: stdout, stderr: stderr}
-	err := b.browse("github.com", []string{"GH_WANT_HELPER_PROCESS=1"})
+	err := b.browse("github.com", []string{"GOCTL_WANT_HELPER_PROCESS=1"})
 	assert.NoError(t, err)
 	assert.Equal(t, "[chrome github.com]", stdout.String())
 	assert.Equal(t, "", stderr.String())
@@ -37,11 +37,11 @@ func TestResolveLauncher(t *testing.T) {
 		wantLauncher string
 	}{
 		{
-			name: "GH_BROWSER set",
+			name: "GOCTL_BROWSER set",
 			env: map[string]string{
-				"GH_BROWSER": "GH_BROWSER",
+				"GOCTL_BROWSER": "GOCTL_BROWSER",
 			},
-			wantLauncher: "GH_BROWSER",
+			wantLauncher: "GOCTL_BROWSER",
 		},
 		{
 			name:         "config browser set",
@@ -56,12 +56,12 @@ func TestResolveLauncher(t *testing.T) {
 			wantLauncher: "BROWSER",
 		},
 		{
-			name: "GH_BROWSER and config browser set",
+			name: "GOCTL_BROWSER and config browser set",
 			env: map[string]string{
-				"GH_BROWSER": "GH_BROWSER",
+				"GOCTL_BROWSER": "GOCTL_BROWSER",
 			},
 			config:       config.ReadFromString("browser: CONFIG_BROWSER"),
-			wantLauncher: "GH_BROWSER",
+			wantLauncher: "GOCTL_BROWSER",
 		},
 		{
 			name: "config browser and BROWSER set",
@@ -72,12 +72,12 @@ func TestResolveLauncher(t *testing.T) {
 			wantLauncher: "CONFIG_BROWSER",
 		},
 		{
-			name: "GH_BROWSER and BROWSER set",
+			name: "GOCTL_BROWSER and BROWSER set",
 			env: map[string]string{
 				"BROWSER":    "BROWSER",
-				"GH_BROWSER": "GH_BROWSER",
+				"GOCTL_BROWSER": "GOCTL_BROWSER",
 			},
-			wantLauncher: "GH_BROWSER",
+			wantLauncher: "GOCTL_BROWSER",
 		},
 	}
 	for _, tt := range tests {

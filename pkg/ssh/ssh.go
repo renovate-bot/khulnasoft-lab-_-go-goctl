@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/cli/safeexec"
+	"github.com/khulnasoft-lab/execsafer"
 )
 
 type Translator struct {

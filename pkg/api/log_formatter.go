@@ -7,7 +7,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/jsonpretty"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/jsonpretty"
 )
 
 type graphqlBody struct {

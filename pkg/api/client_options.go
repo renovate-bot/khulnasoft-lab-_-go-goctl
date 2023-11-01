@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/auth"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/auth"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
 )
 
 // ClientOptions holds available options to configure API clients.
@@ -37,11 +37,11 @@ type ClientOptions struct {
 	// Host is the default host that API requests will be sent to.
 	Host string
 
-	// Log specifies a writer to write API request logs to. Default is to respect the GH_DEBUG environment
+	// Log specifies a writer to write API request logs to. Default is to respect the GOCTL_DEBUG environment
 	// variable, and no logging otherwise.
 	Log io.Writer
 
-	// LogIgnoreEnv disables respecting the GH_DEBUG environment variable. This can be useful in test mode
+	// LogIgnoreEnv disables respecting the GOCTL_DEBUG environment variable. This can be useful in test mode
 	// or when the extension already offers its own controls for logging to the user.
 	LogIgnoreEnv bool
 

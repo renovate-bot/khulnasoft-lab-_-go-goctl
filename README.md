@@ -4,19 +4,19 @@
 
 Modules from this library will obey GitHub CLI conventions by default:
 
-- [`repository.Current()`](https://pkg.go.dev/github.com/khulnasoft-lab/goctl/v2/pkg/repository#current) respects the value of the `GH_REPO` environment variable and reads from git remote configuration as fallback.
+- [`repository.Current()`](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/repository#current) respects the value of the `GOCTL_REPO` environment variable and reads from git remote configuration as fallback.
 
-- GitHub API requests will be authenticated using the same mechanism as `gh`, i.e. using the values of `GH_TOKEN` and `GH_HOST` environment variables and falling back to the user's stored OAuth token.
+- GitHub API requests will be authenticated using the same mechanism as `gh`, i.e. using the values of `GOCTL_TOKEN` and `GOCTL_HOST` environment variables and falling back to the user's stored OAuth token.
 
-- [Terminal capabilities](https://pkg.go.dev/github.com/khulnasoft-lab/goctl/v2/pkg/term) are determined by taking environment variables `GH_FORCE_TTY`, `NO_COLOR`, `CLICOLOR`, etc. into account.
+- [Terminal capabilities](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/term) are determined by taking environment variables `GOCTL_FORCE_TTY`, `NO_COLOR`, `CLICOLOR`, etc. into account.
 
-- Generating [table](https://pkg.go.dev/github.com/khulnasoft-lab/goctl/v2/pkg/tableprinter) or [Go template](https://pkg.go.dev/github.com/khulnasoft-lab/goctl/pkg/template) output uses the same engine as gh.
+- Generating [table](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/tableprinter) or [Go template](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/pkg/template) output uses the same engine as gh.
 
-- The [`browser`](https://pkg.go.dev/github.com/khulnasoft-lab/goctl/v2/pkg/browser) module activates the user's preferred web browser.
+- The [`browser`](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/browser) module activates the user's preferred web browser.
 
 ## Usage
 
-See the full `go-gh`  [reference documentation](https://pkg.go.dev/github.com/khulnasoft-lab/goctl/v2) for more information
+See the full `go-gh`  [reference documentation](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2) for more information
 
 ```golang
 package main
@@ -24,8 +24,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"github.com/khulnasoft-lab/goctl/v2"
-	"github.com/khulnasoft-lab/goctl/v2/pkg/api"
+	"github.com/khulnasoft-lab/go-goctl/v2"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/api"
 )
 
 func main() {
@@ -61,5 +61,5 @@ See [examples][] for more demonstrations of usage.
 If anything feels off, or if you feel that some functionality is missing, please check out our [contributing docs][contributing]. There you will find instructions for sharing your feedback and for submitting pull requests to the project. Thank you!
 
 [extensions]: https://docs.github.com/en/github-cli/github-cli/creating-github-cli-extensions
-[examples]: ./example_gh_test.go
+[examples]: ./example_goctl_test.go
 [contributing]: ./.github/CONTRIBUTING.md

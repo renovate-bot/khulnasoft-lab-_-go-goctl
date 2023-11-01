@@ -26,7 +26,7 @@ type Term struct {
 }
 
 // FromEnv initializes a Term from [os.Stdout] and environment variables:
-//   - GH_FORCE_TTY
+//   - GOCTL_FORCE_TTY
 //   - NO_COLOR
 //   - CLICOLOR
 //   - CLICOLOR_FORCE
@@ -38,7 +38,7 @@ func FromEnv() Term {
 	var termWidthOverride int
 	var termWidthPercentage int
 
-	spec := os.Getenv("GH_FORCE_TTY")
+	spec := os.Getenv("GOCTL_FORCE_TTY")
 	if spec != "" {
 		stdoutIsTTY = true
 		isColorEnabled = !IsColorDisabled()

@@ -10,7 +10,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/jsonpretty"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/jsonpretty"
 	"github.com/itchyny/gojq"
 )
 

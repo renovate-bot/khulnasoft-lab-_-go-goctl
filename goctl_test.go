@@ -12,7 +12,7 @@ import (
 )
 
 func TestHelperProcess(t *testing.T) {
-	if os.Getenv("GH_WANT_HELPER_PROCESS") != "1" {
+	if os.Getenv("GOCTL_WANT_HELPER_PROCESS") != "1" {
 		return
 	}
 	if err := func(args []string) error {
@@ -29,7 +29,7 @@ func TestHelperProcess(t *testing.T) {
 }
 
 func TestHelperProcessLongRunning(t *testing.T) {
-	if os.Getenv("GH_WANT_HELPER_PROCESS") != "1" {
+	if os.Getenv("GOCTL_WANT_HELPER_PROCESS") != "1" {
 		return
 	}
 	args := os.Args[3:]
@@ -42,7 +42,7 @@ func TestHelperProcessLongRunning(t *testing.T) {
 
 func TestRun(t *testing.T) {
 	var stdout, stderr bytes.Buffer
-	err := run(context.TODO(), os.Args[0], []string{"GH_WANT_HELPER_PROCESS=1"}, nil, &stdout, &stderr,
+	err := run(context.TODO(), os.Args[0], []string{"GOCTL_WANT_HELPER_PROCESS=1"}, nil, &stdout, &stderr,
 		[]string{"-test.run=TestHelperProcess", "--", "gh", "issue", "list"})
 	assert.NoError(t, err)
 	assert.Equal(t, "[gh issue list]", stdout.String())
@@ -51,7 +51,7 @@ func TestRun(t *testing.T) {
 
 func TestRunError(t *testing.T) {
 	var stdout, stderr bytes.Buffer
-	err := run(context.TODO(), os.Args[0], []string{"GH_WANT_HELPER_PROCESS=1"}, nil, &stdout, &stderr,
+	err := run(context.TODO(), os.Args[0], []string{"GOCTL_WANT_HELPER_PROCESS=1"}, nil, &stdout, &stderr,
 		[]string{"-test.run=TestHelperProcess", "--", "gh", "error"})
 	assert.EqualError(t, err, "gh execution failed: exit status 1")
 	assert.Equal(t, "", stdout.String())
@@ -62,7 +62,7 @@ func TestRunInteractiveContextCanceled(t *testing.T) {
 	// pass current time to ensure that deadline has already passed
 	ctx, cancel := context.WithDeadline(context.Background(), time.Now())
 	cancel()
-	err := run(ctx, os.Args[0], []string{"GH_WANT_HELPER_PROCESS=1"}, nil, nil, nil,
+	err := run(ctx, os.Args[0], []string{"GOCTL_WANT_HELPER_PROCESS=1"}, nil, nil, nil,
 		[]string{"-test.run=TestHelperProcessLongRunning", "--", "gh", "issue", "list"})
 	assert.EqualError(t, err, "gh execution failed: context deadline exceeded")
 }

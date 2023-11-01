@@ -36,10 +36,10 @@ Please note that this project adheres to a [Contributor Code of Conduct][code-of
 - [GitHub Help][]
 
 
-[bug issues]: https://github.com/khulnasoft-lab/goctl/issues?q=is%3Aopen+is%3Aissue+label%3Abug
-[feature request issues]: https://github.com/khulnasoft-lab/goctl/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement
-[hw]: https://github.com/khulnasoft-lab/goctl/labels/help%20wanted
-[gfi]: https://github.com/khulnasoft-lab/goctl/labels/good%20first%20issue
+[bug issues]: https://github.com/khulnasoft-lab/go-goctl/issues?q=is%3Aopen+is%3Aissue+label%3Abug
+[feature request issues]: https://github.com/khulnasoft-lab/go-goctl/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement
+[hw]: https://github.com/khulnasoft-lab/go-goctl/labels/help%20wanted
+[gfi]: https://github.com/khulnasoft-lab/go-goctl/labels/good%20first%20issue
 [legal]: https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-terms-of-service#6-contributions-under-repository-license
 [license]: ../LICENSE
 [code-of-conduct]: ./CODE-OF-CONDUCT.md

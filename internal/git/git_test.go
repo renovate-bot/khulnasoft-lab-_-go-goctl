@@ -9,7 +9,7 @@ import (
 )
 
 func TestHelperProcess(t *testing.T) {
-	if os.Getenv("GH_WANT_HELPER_PROCESS") != "1" {
+	if os.Getenv("GOCTL_WANT_HELPER_PROCESS") != "1" {
 		return
 	}
 	if err := func(args []string) error {
@@ -27,7 +27,7 @@ func TestHelperProcess(t *testing.T) {
 
 func TestRun(t *testing.T) {
 	stdOut, stdErr, err := run(os.Args[0],
-		[]string{"GH_WANT_HELPER_PROCESS=1"},
+		[]string{"GOCTL_WANT_HELPER_PROCESS=1"},
 		"-test.run=TestHelperProcess", "--", "git", "status")
 	assert.NoError(t, err)
 	assert.Equal(t, "[git status]", stdOut.String())
@@ -36,7 +36,7 @@ func TestRun(t *testing.T) {
 
 func TestRunError(t *testing.T) {
 	stdOut, stdErr, err := run(os.Args[0],
-		[]string{"GH_WANT_HELPER_PROCESS=1"},
+		[]string{"GOCTL_WANT_HELPER_PROCESS=1"},
 		"-test.run=TestHelperProcess", "--", "git", "status", "error")
 	assert.EqualError(t, err, "failed to run git: process exited with error. error: exit status 1")
 	assert.Equal(t, "", stdOut.String())

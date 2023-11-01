@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/khulnasoft-lab/goctl/v2/pkg/config"
+	"github.com/khulnasoft-lab/go-goctl/v2/pkg/config"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/h2non/gock.v1"
 )
