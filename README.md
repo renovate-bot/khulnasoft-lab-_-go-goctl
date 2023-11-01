@@ -1,8 +1,8 @@
-# Go library for the GitHub CLI
+# Go library for theGoCtl CLI
 
 `go-goctl` is a collection of Go modules to make authoring [GitHub CLI extensions][extensions] easier.
 
-Modules from this library will obey GitHub CLI conventions by default:
+Modules from this library will obeyGoCtl CLI conventions by default:
 
 - [`repository.Current()`](https://pkg.go.dev/github.com/khulnasoft-lab/go-goctl/v2/pkg/repository#current) respects the value of the `GOCTL_REPO` environment variable and reads from git remote configuration as fallback.
 
