@@ -5,6 +5,7 @@ go 1.21
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/MakeNowJust/heredoc v1.0.0
+	github.com/MakeNowJust/heredoc/v2 v2.0.1
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/cli/shurcooL-graphql v0.0.4
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
