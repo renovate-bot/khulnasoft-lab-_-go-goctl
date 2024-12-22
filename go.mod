@@ -1,6 +1,8 @@
 module github.com/khulnasoft-lab/go-goctl/v2
 
-go 1.21
+go 1.22
+
+toolchain go1.23.4
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
@@ -8,7 +10,7 @@ require (
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/cli/shurcooL-graphql v0.0.4
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
-	github.com/henvic/httpretty v0.0.6
+	github.com/henvic/httpretty v0.1.4
 	github.com/itchyny/gojq v0.12.13
 	github.com/khulnasoft-lab/browser v0.0.0-20231101161915-41930d3886ab
 	github.com/khulnasoft-lab/execsafer v1.0.0
