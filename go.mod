@@ -16,7 +16,7 @@ require (
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.13.0
 	github.com/stretchr/testify v1.7.0
-	github.com/thlib/go-timezone-local v0.0.0-20210907160436-ef149e42d28e
+	github.com/thlib/go-timezone-local v0.0.7
 	golang.org/x/sys v0.13.0
 	golang.org/x/term v0.13.0
 	golang.org/x/text v0.13.0
