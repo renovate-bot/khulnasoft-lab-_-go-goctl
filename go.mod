@@ -1,6 +1,6 @@
 module github.com/khulnasoft-lab/go-goctl/v2
 
-go 1.21
+go 1.24.0
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
@@ -17,7 +17,7 @@ require (
 	github.com/muesli/termenv v0.13.0
 	github.com/stretchr/testify v1.7.0
 	github.com/thlib/go-timezone-local v0.0.0-20210907160436-ef149e42d28e
-	golang.org/x/sys v0.13.0
+	golang.org/x/sys v0.36.0
 	golang.org/x/term v0.13.0
 	golang.org/x/text v0.13.0
 	gopkg.in/h2non/gock.v1 v1.1.2
